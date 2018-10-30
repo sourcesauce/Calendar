@@ -1,5 +1,6 @@
 package so.calendar;
 
+import java.util.Scanner;
 
 public class Calendar {
 
@@ -12,6 +13,14 @@ public class Calendar {
 		System.out.println("22 23 24 25 26 27 28");
 		System.out.println("29 30 31");
 		
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("달을 입력하세요.");
+		int month = scanner.nextInt();
+		
+		int[] maxDays = {31,28,31,30,31,30,31,31,30,31,30,31};
+		
+		System.out.println(month+"월 은 "+maxDays[month-1]+"일 까지 있습니다.");
+		scanner.close();
 		
 	}
 
