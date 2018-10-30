@@ -25,12 +25,18 @@ public class Calendar {
 
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		System.out.println("달을 입력하세요.");
-		int month = scanner.nextInt();
+		System.out.println("반복 횟수를 입력하세요.");
+		int repeat = scanner.nextInt();
 
-		System.out.println(month + "월 은 " + cal.getMaxDaysOfMonth(month) + "일 까지 있습니다.");
+		for (int i = 0; i < repeat; i++) {
+			System.out.println("달을 입력하세요.");
+			int month = scanner.nextInt();
+
+			System.out.println(month + "월 은 " + cal.getMaxDaysOfMonth(month) + "일 까지 있습니다.");
+		}
+		System.out.println("BYE");
 		scanner.close();
-		cal.printSampleCalendar();
+		// cal.printSampleCalendar();
 	}
 
 }
