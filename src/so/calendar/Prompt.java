@@ -1,24 +1,18 @@
-package so.calendar;
+/* 작성자:소상훈
+ * 완성일:2018-11-05
+ * 목적:JAVA기초 공부
+ * 설명:프롬프트를 이용한 간단한 일정 저장 프로그램
+ * MAIN클래스
+ * 
+*/package so.calendar;
 
 import java.text.ParseException;
 import java.util.Scanner;
 
 public class Prompt {
 
-	public void printMenu() {
-		System.out.println("+---------------------------------+");
-		System.out.println("|1. 일정 등록");
-		System.out.println("|2. 일정 검색");
-		System.out.println("|3. 달력 보기");
-		System.out.println("|h. 도움말 q. 종료");
-		System.out.println("+---------------------------------+");
-	}
-
-	/*
-	 * @param week 요일명
-	 * 
-	 * @return 0~6(0=Sunday,6=Saturday)
-	 */
+//	@param week 요일명
+//	@return 0~6(0=Sunday,6=Saturday)
 	public int parseDay(String week) {
 		switch (week) {
 		case "su":
@@ -40,17 +34,18 @@ public class Prompt {
 		}
 	}
 
-	public void runPrompt() throws ParseException {
+	/*
+	 * 종류:프롬프트를 실행하는 메서드 내용:메뉴를 프롬프트에 띄우고 명령을 입력받는다
+	 */ public void runPrompt() throws ParseException {
 		printMenu();
-		
 		Scanner scanner = new Scanner(System.in);
 		Calendar cal = new Calendar();
-
 		boolean isLoop = true;
+
 		while (isLoop) {
 			System.out.println("명령( 1, 2, 3, h, q)");
 			String cmd = scanner.next();
-			
+
 			switch (cmd) {
 			case "1":
 				cmdRegister(scanner, cal);
@@ -62,7 +57,7 @@ public class Prompt {
 				cmdCal(scanner, cal);
 				break;
 			case "h":
-				PrintMenu();
+				printMenu();
 				break;
 			case "q":
 				isLoop = false;
@@ -72,12 +67,21 @@ public class Prompt {
 
 	}
 
-	private void PrintMenu() {
-		// TODO Auto-generated method stub
-
+	/*
+	 * 종류:메뉴표시 내용:메뉴표시
+	 */
+	private void printMenu() {
+		System.out.println("+---------------------------------+");
+		System.out.println("|1. 일정 등록");
+		System.out.println("|2. 일정 검색");
+		System.out.println("|3. 달력 보기");
+		System.out.println("|h. 도움말 q. 종료");
+		System.out.println("+---------------------------------+");
 	}
 
-	private void cmdCal(Scanner s, Calendar c) {
+	/*
+	 * 종류:연도,월 입력받는 메서드 내용:연도,월을 키보드로 입력받아 Calendar.printCalendar를 호출
+	 */ private void cmdCal(Scanner s, Calendar c) {
 		int month, year = 0;
 
 		System.out.println("연도를 입력하세요.");
@@ -96,22 +100,9 @@ public class Prompt {
 		c.printCalendar(year, month);
 	}
 
-	private void cmdSerch(Scanner s, Calendar c) {
-		System.out.println("[일정 검색]");
-
-		System.out.println("날짜를 입력해 주세요 (yyyy-mm-dd)");
-		String date = s.next();
-		PlanItem plan;
-		plan = c.serchPlan(date);
-		if(plan !=null)
-		{
-			System.out.println(plan.detail);			
-			System.out.println(plan.detail);			
-		}else {
-			System.out.println("일정이 없습니다");			
-		}
-	}
-
+	/*
+	 * 종류:일정 등록 내용:날짜를 입력받고 그 날짜에 일정을 입력하여 ;이 나올때까지의 내용을 보내어 Calendar.registerPlan호출
+	 */
 	private void cmdRegister(Scanner s, Calendar c) throws ParseException {
 		System.out.println("[새 일정 등록]");
 
@@ -127,6 +118,23 @@ public class Prompt {
 			}
 		}
 		c.registerPlan(date, text);
+	}
+
+	/*
+	 * 종류:일정검색 내용:날짜를 입력받아 Calendar.serchPlan을 호출
+	 */
+	private void cmdSerch(Scanner s, Calendar c) {
+		System.out.println("[일정 검색]");
+
+		System.out.println("날짜를 입력해 주세요 (yyyy-mm-dd)");
+		String date = s.next();
+		PlanItem plan;
+		plan = c.serchPlan(date);
+		if (plan != null) {
+			System.out.println(plan.detail);
+		} else {
+			System.out.println("일정이 없습니다");
+		}
 	}
 
 	public static void main(String[] args) throws ParseException {

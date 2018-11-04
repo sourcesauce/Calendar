@@ -1,3 +1,9 @@
+/* 작성자:소상훈
+ * 완성일:2018-11-05
+ * 목적:SUM테스트를 위한 클래스
+ * MAIN과 연관 없음
+ * 
+*/
 package so.calendar;
 
 import java.util.Scanner;
