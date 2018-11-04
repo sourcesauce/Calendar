@@ -101,14 +101,15 @@ public class Prompt {
 
 		System.out.println("날짜를 입력해 주세요 (yyyy-mm-dd)");
 		String date = s.next();
-		String plan = "";
-		try {
-			plan = c.serchPlan(date);
-		} catch (ParseException e) {
-			e.printStackTrace();
-			System.err.println("일정 검색 중 오류가 발생했습니다.");
+		PlanItem plan;
+		plan = c.serchPlan(date);
+		if(plan !=null)
+		{
+			System.out.println(plan.detail);			
+			System.out.println(plan.detail);			
+		}else {
+			System.out.println("일정이 없습니다");			
 		}
-		System.out.println(plan);
 	}
 
 	private void cmdRegister(Scanner s, Calendar c) throws ParseException {
